@@ -1,0 +1,53 @@
+   <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    {{#each errors}}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{text}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {{/each}}
+
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin">
+  <form action="/medicos/login" method="POST">
+    <i class="fas fa-sign-in-alt fa-7x"></i>
+    <h1 class="h3 mb-3 fw-normal">Por favor, ingrese sus datos</h1>
+
+    <div class="form-floating">
+      <input name='email' type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Correo Electronico</label>
+    </div>
+    <div class="form-floating">
+      <input name='password' type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
+    <p>¿No tienes cuenta? Crea una haciendo clic <a href="#">aquí</a></p>
+    <a href="/">Volver a inicio</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+  </form>
+
+  
+</main>
+
+
+  </body>
