@@ -5,16 +5,16 @@ const Medico = require('../models/Medicos');
 const passport = require('passport')
 
 //Para que autentique en base a lo descrito en passport
-router.post('/medicos/login', passport.authenticate('local',{
+router.post('/medico/login', passport.authenticate('local',{
     successRedirect: '/',
-    failureRedirect: '/iniciar-sesion',
+    failureRedirect: '/ingresar-login',
     failureMessage: true
 })); 
 
-router.post('/medicos/login', (req,res)=> {
+router.post('/medico/login', (req,res)=> {
     const {email,password}=req.body;
     const errors= [];
-    if(!user){
+    if(!email){
         errors.push({text: 'Por favor ingrese su usuario'});
     }
     if(!password){

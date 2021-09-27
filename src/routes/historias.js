@@ -1,15 +1,11 @@
 const express=require('express');
 const { request } = require('http');
 const router=express.Router();
-const Historias = require('../models/Historias')
-
-router.get('/historias/find',(req,res)=>{
-    res.render('/historias/find-historia');
-});
+const Historia = require('../models/Historias')
 
 router.post('/historias/add-historia', async (req,res)=>{
-    const {cedula, nombre, apellido, email, tlf, direccion, antecedentes, tto, examen, diagnostico} = req.body;
-    const errors = [];
+    const {cedula, nombre, apellido, email, tlf, direccion, antecedentes, tto, examen, diagnostico}= req.body
+    const errors=[];
     if(!cedula){
         errors.push({text: "Por favor ingrese la cédula del paciente"});
     }
@@ -21,6 +17,12 @@ router.post('/historias/add-historia', async (req,res)=>{
     }
     if(!direccion){
         errors.push({text: 'Por favor ingrese la dirección del paciente'})
+    }
+    if(!email){
+        errors.push({text: 'Por favor ingrese correo del paciente'})
+    }
+    if(!tlf){
+        errors.push({text: 'Por favor ingrese un número de tlf'})
     }
     if(!antecedentes){
         errors.push({text: 'Por favor ingrese los antecedentes del paciente'})
@@ -35,7 +37,7 @@ router.post('/historias/add-historia', async (req,res)=>{
         errors.push({text: 'Por favor ingrese el diagnostico del paciente'})
     }
     if(errors.length>0){
-        res.render('historias/add-historia',{
+        res.render('./historias/add-historia',{
             errors,
             nombre,
             apellido,
@@ -47,23 +49,34 @@ router.post('/historias/add-historia', async (req,res)=>{
             tto,
             examen,
             diagnostico
-        });
-    }else{
-        const newHistorias = new Historias({
-            cedula, nombre, apellido, email, tlf, direccion, antecedentes, tto, examen, diagnostico
-        });
-        await newHistorias.save();
-        res.redirect('historias/historias');
+        });        
+    }else {
+        const newHistoria= new Historia({cedula, nombre, apellido, email, tlf, direccion, antecedentes, tto, examen, diagnostico});
+        await newHistoria.save(); //Guardamos los datos dentro de MongoDB
+        res.send('Furula');
     }
-})
-
-router.get('/historias/historias', async (req,res)=>{
-    const historia= await Historias.find();
-    res.render('historias/historias', {historia});
 });
 
 router.get('/historias/add',(req,res)=>{
     res.render('historias/add-historia');
+});
+
+router.get('/historias/all', async (req,res)=> {
+    const pacientes = await Historia.find({}).lean();
+    res.render('historias/all-historias',{pacientes});
+});
+
+router.post('/historias/find',async (req,res)=>{
+    const {cedula}= req.body
+    const find= await Historia.find({cedula: cedula}).lean();
+    res.render('historias/all-historias', {find});
+});
+
+router.get('/historias/update', async (req,res)=> {
+    const{cedula, nombre, apellido, email, tlf, diagnostico, tto, direccion, examen, antecedentes}=req.body
+    const update= await Historia.findOne({cedula: cedula});
+    console.log(cedula);
+    res.render('historias/update-history', {update})
 });
 
 module.exports = router;
