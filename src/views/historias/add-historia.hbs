@@ -1,60 +1,66 @@
-{{#each errors}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-{{text}}  
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-{{/each}}
+{{> menu}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    {{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{text}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/each}}
 
-<div class="class-col-md-4 mx-auto">
-    <div class="card">
-        <div class="card-header">
-            <h3>Registrar Paciente</h3>
-        </div>
-        <div class="card-body">
-            <form action="/historias/add-historia" method="POST">
-                <div class="form-group">
-                    <input type="number" name="cedula" class="form-control" placeholder="Cédula" style= "width: 50%;" autofocus>
-                </div>
-                <div class="form-group">
-                <div class="col-xs-12 col-md-3 input-group input-group-sm">
-                    <input type="text" name="nombre" placeholder="Nombre" class="form-control" aria-describedby="basic-addon1" style="margin-right: 5px;">
-                    <input type="text" name="apellido" placeholder="Apellido" class="form-control" aria-describedby="basic-addon1">
-                </div>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Correo">
-                </div>
-                <div class="form-group">
-                    <input type="number" name="tlf" class="form-control" placeholder="Teléfono">
-                </div>
-                <div class="form-group">
-                    <input name="direccion" class="form-control" placeholder="Dirección">
-                </div>
+    <div class="class-col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3>Registrar Paciente</h3>
+            </div>
+            <div class="card-body">
+                <form action="/historias/add-historia" method="POST">
+                    <div class="form-group">
+                        <input type="number" name="cedula" class="form-control" placeholder="Cédula" style="width: 50%;"
+                            autofocus>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-3 input-group input-group-sm">
+                            <input type="text" name="nombre" placeholder="Nombre" class="form-control"
+                                aria-describedby="basic-addon1" style="margin-right: 5px;">
+                            <input type="text" name="apellido" placeholder="Apellido" class="form-control"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Correo">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="tlf" class="form-control" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <input name="direccion" class="form-control" placeholder="Dirección">
+                    </div>
 
-                <div class="form-group">
-                    <h2>Antecedentes:</h2>
-                    <textarea name="antecedentes" class="form-control"
-                        placeholder="Ingrese los antecedentes"></textarea>
-                </div>
+                    <div class="form-group">
+                        <h2>Antecedentes:</h2>
+                        <textarea name="antecedentes" class="form-control"
+                            placeholder="Ingrese los antecedentes"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <h2>Tratamiento Actual:</h2>
-                    <textarea name="tto" class="form-control" placeholder="Tratamiento Actual"></textarea>
-                </div>
+                    <div class="form-group">
+                        <h2>Tratamiento Actual:</h2>
+                        <textarea name="tto" class="form-control" placeholder="Tratamiento Actual"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <h2>Examen Fisico:</h2>
-                    <textarea name="examen" class="form-control" placeholder="Hallazgos"></textarea>
-                </div>
-                <div class="form-group">
-                    <h2>Diagnostico+Plan Terapuetico</h2>
-                    <textarea name="diagnostico" class="form-control"
-                        placeholder="Diagnostico+Plan Terapeutico"></textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">Registrar</button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <h2>Examen Fisico:</h2>
+                        <textarea name="examen" class="form-control" placeholder="Hallazgos"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h2>Diagnostico+Plan Terapuetico</h2>
+                        <textarea name="diagnostico" class="form-control"
+                            placeholder="Diagnostico+Plan Terapeutico"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Registrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</main>

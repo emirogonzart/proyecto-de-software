@@ -7,10 +7,11 @@ const HistoriasSchema = new Schema({
     apellido: { type: String, required: true },
     email: { type: String, required: true },
     tlf: { type: String },
+    tto: {type: String, required: true},
     direccion: { type: String, required: true },
     antecedentes: { type: String, required: true },
     examen: { type: String, required: true },
     diagnostico: { type: String, required: true },
-    date: {type: Date, default: Date.now}
+    date: { type: Date, default: Date.now }
 });
-module.exports= mongoose.model("Paciente", HistoriasSchema);
+module.exports = mongoose.model("Paciente", HistoriasSchema);

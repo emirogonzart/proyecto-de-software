@@ -1,17 +1,17 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const bcrypt = require ('bcryptjs')
+const bcrypt = require('bcryptjs')
 
 const MedicoSchema = new Schema(
   {
     nombre: { type: String, trim: true },
-    apellido: {type: String, trim: true},
-    ci: {type: String},
-    mpps: {type: String},
+    apellido: { type: String, trim: true },
+    ci: { type: String },
+    mpps: { type: String },
     email: { type: String, required: true, unique: true, trim: true },
     password: { type: String, required: true },
-    especialidad: {type: String, trim: true},
-    tlf: {type: String, trim: true},
+    especialidad: { type: String, trim: true },
+    tlf: { type: String, trim: true },
   },
   {
     timestamps: true,
@@ -28,4 +28,4 @@ MedicoSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports= mongoose.model("medico", MedicoSchema);
+module.exports = mongoose.model("medico", MedicoSchema);
