@@ -9,9 +9,11 @@ const MedicoSchema = new Schema(
     ci: { type: String },
     mpps: { type: String },
     email: { type: String, required: true, unique: true, trim: true },
-    password: { type: String, required: true },
+    passwd1: { type: String, required: true },
+    passwd2: { type: String, required: true },
     especialidad: { type: String, trim: true },
     tlf: { type: String, trim: true },
+    direccion: { type: String, required: true },
   },
   {
     timestamps: true,
