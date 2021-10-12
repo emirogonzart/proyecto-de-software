@@ -1,36 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const Medico = require('../models/Medicos');
+require('../models/Medicos');
 const passport = require('passport');
 const Medicos = require('../models/Medicos');
 
 //Para que autentique en base a lo descrito en passport
 router.post('/medico/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/ingresar-login',
+    successRedirect: '/historias/all',
+    failureRedirect: '/iniciar-sesion',
     failureMessage: true
 }));
-
-router.post('/medico/login', (req, res) => {
-    const { email, password } = req.body;
-    const errors = [];
-    if (!email) {
-        errors.push({ text: 'Por favor ingrese su usuario' });
-    }
-    if (!password) {
-        errors.push({ text: 'Por favor ingrese su contraseña' });
-    }
-
-    if (errors.length > 0) {
-        res.render('iniciar-sesion', {
-            errors
-        });
-    } else {
-        res.send('Ok');
-    }
-    //console.log(req.body);
-});
 
 router.get('/medicos/registrar',(req,res)=>{
     res.render('medicos/registrar');

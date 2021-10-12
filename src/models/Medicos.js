@@ -21,13 +21,13 @@ const MedicoSchema = new Schema(
   }
 );
 
-MedicoSchema.methods.encryptPassword = async (password) => {
+MedicoSchema.methods.encryptPassword = async (passwd1) => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };
 
-MedicoSchema.methods.matchPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+MedicoSchema.methods.matchPassword = async function (passwd1) {
+  return await bcrypt.compare(passwd1, this.passwd1);
 };
 
 module.exports = mongoose.model("medico", MedicoSchema);
